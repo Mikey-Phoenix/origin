@@ -1,0 +1,16 @@
+{% extends "myapp/base.html" %} {% block content %}
+
+<div class="masonry w-[95vw]">
+    {% for art in arts %}
+        <div class="bg-[#1c1c1c] h-fit rounded-sm relative mt-14">
+            <img src="/media/{{ art.art_image }}" alt="" class="w-full h-full rounded-sm">
+            <h3 class="text-red-700 mt-3 text-2xl md:text-4xl bebas-neue-regular">{{ art.name }}</h3>
+            <p>{{ art.art_description }}</p>
+            <p>Current Bid: $<span>{{ art.initialBid }}</span></p>
+            <button class="w-[90%] h-10 my-3 text-center font-semibold py-auto bg-red-700 transition ease-in-out duration-150 hover:bg-red-600 active:bg-white active:text-black"><a href="{% url 'make-a-bid' art.id %}">Make a Bid</a></button>
+        </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

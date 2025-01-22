@@ -1,0 +1,65 @@
+{% extends "myapp/base.html" %} {% block content %}
+
+
+    <!-- PROFILE SECTION -->
+    <div class="z-10 fixed top-0  left-[-50%] md:left-0 w-[50%] md:w-[25%] h-full pt-5 bg-[#1c1c1c]" id="profile">
+        <img class="w-48 h-48 rounded-full m-auto mt-5" src="/static/profile.webp" alt="profile">
+        <div class="ml-5 mt-3">
+            <p class="text-sm">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, officia aliquid? Dolor pariatur ab eveniet sequi nobis est.</p>
+            <div class="mt-3 flex items-center justify-evenly">
+                <a href="tel:+2348168562130" class="block no-underline text-white text-xl mt-2"><i class="fa-brands fa-whatsapp mr-3 transition-all duration-150 ease-in-out hover:text-red-700"></i></a>
+                <a href="https://x.com/PhoenixDtechie" target="_blank" class="block no-underline text-white  text-xl mt-2"><i class="fa-brands fa-x-twitter mr-3 transition-all duration-150 ease-in-out hover:text-red-700"></i></a>
+                <a href="https://www.instagram.com/fisayobajo?igsh=aTd0OGJwejY4Mnk3" target="_blank" class="block no-underline text-white text-xl mt-2"><i class="fa-brands fa-instagram mr-3 transition-all duration-150 ease-in-out hover:text-red-700"></i></a>
+            </div>
+        </div>
+        <div class="md:hidden absolute -right-12 top-24 w-10 h-10 rounded-sm flex justify-center items-center text-xl bg-[#1c1c1c] cursor-pointer transition ease-in-out duration-150 hover:text-red-700" onclick="toggleProfile()">
+            <i class="fa-solid fa-user" id="icon"></i>
+        </div>
+    </div>
+
+    <!-- MAIN ABOUT CONTENT -->
+    <div class="fixed top-0 right-0 pr-5 py-5 w-[90%] md:w-[70%] h-full overflow-y-scroll text-left">
+        <h1 class="mt-5 text-red-700 text-5xl w-max bebas-neue-regular">About Me</h1>
+        <p class="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio nisi aliquid, ipsam est adipisci quisquam, modi, laboriosam nobis enim nostrum rerum cumque. In eum commodi consectetur, vel consequuntur minus? Assumenda.</p>
+
+        <h1 class="mt-5 text-red-700 text-5xl w-max bebas-neue-regular">Education</h1>
+        <h3 class="mt-4 text-2xl font-semibold">Elementary</h3>
+        <p class="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio nisi aliquid, ipsam est adipisci quisquam, modi, laboriosam nobis enim nostrum rerum cumque. In eum commodi consectetur, vel consequuntur minus? Assumenda.</p>
+        <h3 class="mt-4 text-2xl font-semibold">Secondary</h3>
+        <p class="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio nisi aliquid, ipsam est adipisci quisquam, modi, laboriosam nobis enim nostrum rerum cumque. In eum commodi consectetur, vel consequuntur minus? Assumenda.</p>
+        <h3 class="mt-4 text-2xl font-semibold">Tertiary</h3>
+        <p class="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio nisi aliquid, ipsam est adipisci quisquam, modi, laboriosam nobis enim nostrum rerum cumque. In eum commodi consectetur, vel consequuntur minus? Assumenda.</p>
+        <h3 class="mt-4 text-2xl font-semibold">Other</h3>
+        <p class="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio nisi aliquid, ipsam est adipisci quisquam, modi, laboriosam nobis enim nostrum rerum cumque. In eum commodi consectetur, vel consequuntur minus? Assumenda.</p>
+
+        <h1 class="mt-5 text-red-700 text-5xl w-max bebas-neue-regular">Experience</h1>
+        <h3 class="mt-4 text-2xl font-semibold">1st Job</h3>
+        <p class="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio nisi aliquid, ipsam est adipisci quisquam, modi, laboriosam nobis enim nostrum rerum cumque. In eum commodi consectetur, vel consequuntur minus? Assumenda.</p>
+        <h3 class="mt-4 text-2xl font-semibold">2nd Job</h3>
+        <p class="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio nisi aliquid, ipsam est adipisci quisquam, modi, laboriosam nobis enim nostrum rerum cumque. In eum commodi consectetur, vel consequuntur minus? Assumenda.</p>
+        <h3 class="mt-4 text-2xl font-semibold">3rd Job</h3>
+        <p class="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio nisi aliquid, ipsam est adipisci quisquam, modi, laboriosam nobis enim nostrum rerum cumque. In eum commodi consectetur, vel consequuntur minus? Assumenda.</p>
+    </div>
+
+    <script>
+        // left-[-50%]
+        let is_inView = false;
+        const profile = document.querySelector('#profile');
+        const icon = document.querySelector('#icon');
+
+        function toggleProfile() {
+            if (is_inView == false) {
+                profile.classList.remove('left-[-50%]');
+                icon.classList.remove('fa-user');
+                icon.classList.add('fa-arrow-left');
+                is_inView = true;
+            } else {
+                profile.classList.add('left-[-50%]');
+                icon.classList.remove('fa-arrow-left');
+                icon.classList.add('fa-user');
+                is_inView = false;
+            }
+        }
+    </script>
+
+    {% endblock %}

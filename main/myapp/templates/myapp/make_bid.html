@@ -1,0 +1,83 @@
+{% extends "myapp/base.html" %}
+{% load static %}
+{% block content %}
+
+
+<!-- BIDDING SECTION -->
+<div class="min-h-[100vh] w-[100%]">
+
+
+    {% if selected_art %}
+        <div class="w-[95%] mx-auto py-3 mt-[7%] md:flex items-top justify-evenly">
+            <img class="mx=auto md:w-[70%]" src="/media/{{ selected_art.art_image }}" alt="{{ selected_art.name }}">
+            <form class="mt-5" action="" method="POST">
+                {% csrf_token %}
+                <h1 class="text-red-700 text-6xl font-semibold bebas-neue-regular">MAKE A BID</h1>
+                <br>
+                <p class="mb-2">{{ selected_art.name }}</p>
+                <p class="mb-2">{{ selected_art.art_description }}</p>
+                <p class="mb-2">Current bid: $<span class="text-danger">{{ selected_art.initialBid }}</span></p>
+                {{ form.as_p }}
+                <button type="submit" class="button relative rounded-sm w-full py-2 mb-2 md:mr-10 mt-3  transition ease-out duration-150 hover:text-red-700" id="button">Save changes</button>
+            </form>
+        </div>
+        
+    {% else %}
+        <h1 class="text-red-700 text-6xl font-semibold bebas-neue-regular">MAKE A BID</h1>
+        {% endif %}
+        
+</div>
+    
+
+<!-- WORKS SECTION -->
+<h1 class="text-red-700 mt-5 text-6xl font-semibold bebas-neue-regular">MORE ITEMS</h1>
+
+<div class="masonry w-[95vw]">
+    {% for art in arts %}
+        {% if art.hot %}
+            <div class="w-fit h-fit rounded-sm relative mt-14">
+                <img src="/media/{{ art.art_image }}" alt="" class="w-full h-full rounded-sm">
+                <div class="w-full h-full rounded-sm absolute top-0 left-0 flex items-center justify-center bg-black/30 transition-all ease-in-out duration-150 art_item">
+                    <button class="w-[90%] h-10 text-center font-semibold py-auto bg-red-700 transition ease-in-out duration-150 hover:bg-red-600 active:bg-white active:text-black"  data-bs-toggle="modal" data-bs-target="#{{ art.number }}"><a href="{% url 'make-a-bid' art.id %}">Make a Bid</a></button>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+
+<!-- onclick="store_bids('{{ selected_art.art_image }}', '{{selected_art.name}}', '{{selected_art.initialBid}}')" -->
+
+<script>
+    // let temp;
+    let arr = []
+    // localStorage.clear()
+    function store_bids(image, name, bid_amount) {
+        let tempArr = [image, name, bid_amount];
+        
+        
+        if (localStorage.getItem('user') == null) {
+            arr.push(tempArr);
+            
+            
+        } else {
+            arr = JSON.parse(localStorage.getItem('user'));
+            arr.push(tempArr);
+            
+        }
+        localStorage.setItem('user', JSON.stringify(arr))
+    }
+
+    document.querySelector('#button').addEventListener('click',(e)=>{
+        
+        if (parseInt(document.querySelector('#newAmount').value) < parseInt('{{selected_art.initialBid}}')) {
+            e.preventDefault();
+            alert("Your Bid cannot be less than {{selected_art.initialBid}}")
+        } else {
+            store_bids('{{ selected_art.art_image }}', '{{selected_art.name}}', parseInt(document.querySelector('#newAmount').value));
+            alert("Bidding process was successful!")
+        }
+    })
+    
+ </script>
+
+{% endblock %}

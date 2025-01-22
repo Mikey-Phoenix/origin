@@ -1,0 +1,38 @@
+{% extends "myapp/base.html" %} {% block content %}
+
+
+<div class="h-[100vh] w-full">
+  <form class="mt-32 w-[90%] md:w-[30%] mx-auto text-left" action="" method="POST">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-warning alert-dismissible mt-20 fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+        
+    {% endfor %}
+  {% endif %}
+    {% csrf_token %}
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Username</label>
+        <input id="user_name" class="w-full bg-[#1c1c1c] text-white border-0 rounded-sm focus:border-red-700" type="text" name="username" aria-describedby="emailHelp">
+        <!-- <input type="text" class="w-full bg-[#1c1c1c] text-white border-opacity-0 rounded-sm focus:border-red-700" name="username" aria-describedby="emailHelp"> -->
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input class="w-full bg-[#1c1c1c] text-white border-0 rounded-sm focus:border-red-700" type="password" name="password">
+        <!-- <input type="password" class="w-full bg-[#1c1c1c] text-white border-opacity-0 rounded-sm focus:border-red-700" name="password"> -->
+      </div>
+      
+      <p>Don't have an account yet? <a class="text-red-700 transition ease-in-out duration-150 hover:text-red-500" href="{% url 'register_user' %}">Register</a></p>
+      <button type="submit" class="button relative rounded-sm w-32 mb-2 mr-10 mt-3 py-2 transition ease-out duration-150 hover:text-red-700">Submit</button>
+  </form>
+</div>
+
+<script>
+  document.querySelector('form').addEventListener('submit', ()=>{
+    alert('Welcome Back ' + document.querySelector('#user_name').value)
+  })
+</script>
+
+{% endblock %}

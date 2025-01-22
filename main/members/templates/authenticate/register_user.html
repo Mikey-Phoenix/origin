@@ -1,0 +1,29 @@
+{% extends "myapp/base.html" %} {% block content %}
+
+    
+{% if form.errors %}
+    <div class="alert alert-warning alert-dismissible mt-20 fade show" role="alert">
+        There was an error with your form...
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% else %}
+    <div class="alert alert-success alert-dismissible mt-20 fade show" role="alert">
+        Registration successful
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% endif %}
+
+    <div class="w-[90%] md:w-[60%] p-4 mb-5 mx-auto rounded">
+
+        <form class="mt-32 mx-auto text-left" action="{% url 'register_user' %}" method="POST">
+        {% if messages %}
+
+                
+        {% endif %}
+        {% csrf_token %}
+            {{ form.as_p }}
+            <p>Already have an account? <a class="text-red-700 transition ease-in-out duration-150 hover:text-red-500" href="{% url 'login' %}">Login</a></p>
+            <button type="submit" class="button relative rounded-sm w-32 mb-2 mr-10 mt-3 py-2 transition ease-out duration-150 hover:text-red-700">Submit</button>
+        </form>
+    </div>
+{% endblock %}
