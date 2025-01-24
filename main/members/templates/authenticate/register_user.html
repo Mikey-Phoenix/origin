@@ -22,7 +22,7 @@
         {% endif %}
         {% csrf_token %}
             {{ form.as_p }}
-            <p>Already have an account? <a class="text-red-700 transition ease-in-out duration-150 hover:text-red-500" href="{% url 'login' %}">Login</a></p>
+            <p>Already have an account? <a class="text-red-700 transition ease-in-out duration-150 hover:text-[#ffc107]" href="{% url 'login' %}">Login</a></p>
             <button type="submit" class="button relative rounded-sm w-32 mb-2 mr-10 mt-3 py-2 transition ease-out duration-150 hover:text-red-700">Submit</button>
         </form>
     </div>
